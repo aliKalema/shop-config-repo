@@ -17,7 +17,7 @@ spring:
     oauth2:
       resource-server:
         jwt:
-          jwk-set-uri: {shop.iam.url}/realms/My-Realm/protocol/openid-connect/certs
+          jwk-set-uri: ${shop.iam.url}/realms/My-Realm/protocol/openid-connect/certs
   rabbitmq:
     addresses: ${RABBIT_MQ_HOST:localhost}
     username: ${RABBIT_MQ_USERNAME:guest}

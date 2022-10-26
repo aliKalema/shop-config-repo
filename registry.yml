@@ -1,6 +1,11 @@
 server:
   port: 8083
 
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+
 eureka:
   client:
     register-with-eureka: false

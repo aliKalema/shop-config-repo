@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+      gateway:
+        discovery:
+          locator:
+            enabled: true
+            lower-case-service-id: true
+        default-filters: TokenRelay
+        routes:
+          - id: product-service
+            uri: lb://product-service
+            predicates:
+              - Path=/product/**
+          - id: tenant-service
+            uri: lb://tenant-service
+            predicates:
+              - Path=/tenant/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${shop.registry.url}
+    instance:
+      hostname: ${shop.registry.hostname}
+
+

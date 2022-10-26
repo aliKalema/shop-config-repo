@@ -27,8 +27,9 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: ${shop.registry.url}
+      defaultZone: ${shop.registry.url}/eureka
     instance:
+      preferIpAddress: true
       hostname: ${shop.registry.hostname}
 
   shop:

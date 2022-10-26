@@ -1,0 +1,39 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: tenant-service
+  datasource:
+    url: ${MYSQL_DB_URI:jdbc:mysql://127.0.0.1:3307/tenant}
+    name: tenant
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  eureka:
+    client:
+      register-with-eureka: true
+      fetch-registry: true
+      service-url:
+        defaultZone: {shop.registry.url}
+      instance:
+        hostname: {shop.registry.hostname }
+
+keycloak:
+  realm: master
+  resource: tenant-service
+  auth-server-url: {shop.iam.url}
+  credentials:
+    secret: ixLpGjwRUgwIkvVTwXlwnfjWVx0EeubD
+
+shop:
+  iam:
+    url: ${iamBaseUrl:http://localhost:8080}
+  registry:
+    url: ${registryBaseUrl:http://localhost:8083}
+    hostname: ${registryHostname:localhost}

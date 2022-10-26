@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: api-gateway
+  web-application-type: reactive
   cloud:
       gateway:
         discovery:
@@ -21,6 +22,21 @@ spring:
             predicates:
               - Path=/tenant/**
 
+  security:
+    oauth2:
+      client:
+        provider:
+          shop-iam:
+            issuer-uri: ${shop.iam.url}/realms/master
+        registration:
+          shop-gateway:
+            provider: shop-iam
+            scope: openid
+            client-id: api-gateway
+            client-secret: ${MASTER_REALM_CLIENT_SECRET:eGKvLPx0YtQj2lHH1wbQg6it2BrIGdRm}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak" rGgd5MwV4YznhJURUqXHdfaQiqJGSnP6
+
 eureka:
   client:
     register-with-eureka: true
@@ -29,5 +45,12 @@ eureka:
       defaultZone: ${shop.registry.url}
     instance:
       hostname: ${shop.registry.hostname}
+
+  shop:
+    iam:
+      url: ${iamBaseUrl:http://localhost:8080}
+    registry:
+      url: ${registryBaseUrl:http://localhost:8083}
+      hostname: ${registryHostname:localhost}
 
 

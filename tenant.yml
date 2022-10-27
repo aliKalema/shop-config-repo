@@ -10,17 +10,17 @@ spring:
     username: ${MYSQL_USERNAME:root}
     password: ${MYSQL_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     database: MYSQL
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5Dialect
+
   eureka:
     client:
       serviceUrl:
-        defaultZone: ${EUREKA_URI:http://localhost:8083/eureka}
-    instance:
-      preferIpAddress: true
+        defaultZone: ${shop.registry.url}
 
 keycloak:
   realm: master

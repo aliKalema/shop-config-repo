@@ -20,14 +20,14 @@ spring:
       register-with-eureka: true
       fetch-registry: true
       service-url:
-        defaultZone: {shop.registry.url}
+        defaultZone: ${shop.registry.url}
       instance:
-        hostname: {shop.registry.hostname }
+        hostname: ${shop.registry.hostname }
 
 keycloak:
   realm: master
   resource: tenant-service
-  auth-server-url: {shop.iam.url}
+  auth-server-url: ${shop.iam.url}
   credentials:
     secret: ixLpGjwRUgwIkvVTwXlwnfjWVx0EeubD
 

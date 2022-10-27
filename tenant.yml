@@ -17,12 +17,10 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
   eureka:
     client:
-      register-with-eureka: true
-      fetch-registry: true
-      service-url:
-        defaultZone: ${shop.registry.url}
-      instance:
-        hostname: ${shop.registry.hostname }
+      serviceUrl:
+        defaultZone: ${EUREKA_URI:http://localhost:8083/eureka}
+    instance:
+      preferIpAddress: true
 
 keycloak:
   realm: master
@@ -35,5 +33,4 @@ shop:
   iam:
     url: ${iamBaseUrl:http://localhost:8080}
   registry:
-    url: ${registryBaseUrl:http://localhost:8083}
-    hostname: ${registryHostname:localhost}
+    url: ${EUREKA_URI:http://localhost:8083/eureka}

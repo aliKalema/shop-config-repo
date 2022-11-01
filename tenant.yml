@@ -17,10 +17,10 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5Dialect
 
-  eureka:
-    client:
-      serviceUrl:
-        defaultZone: ${shop.registry.url}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${shop.registry.url}
 
 keycloak:
   realm: master

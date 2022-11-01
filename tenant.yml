@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: tenant-service
+    name: tenant
   datasource:
     url: ${MYSQL_DB_URI:jdbc:mysql://127.0.0.1:3307/tenant}
     name: tenant

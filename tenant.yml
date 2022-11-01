@@ -32,5 +32,15 @@ keycloak:
 shop:
   iam:
     url: ${iamBaseUrl:http://localhost:8080}
+    template:
+      issuer: ${shop.iam.url}/auth/realms/%s,
+      authorization_url: ${shop.iam.url}/auth/realms/%s/protocol/openid-connect/auth,
+      token_uri: ${shop.iam.url}/auth/realms/%s/protocol/openid-connect/token,
+      introspection_uri: ${shop.iam.url}/auth/realms/%s/protocol/openid-connect/token/introspect,
+      userinfo_uri: ${shop.iam.url}/auth/realms/%s/protocol/openid-connect/userinfo,
+      end_session_uri: ${shop.iam.url}/auth/realms/%s/protocol/openid-connect/logout,
+      jwks_uri: ${shop.iam.url}/auth/realms/%s/protocol/openid-connect/certs,
+      check_session_iframe: ${shop.iam.url}/auth/realms/%s/protocol/openid-connect/login-status-iframe.html,
+      
   registry:
     url: ${EUREKA_URI:http://localhost:8083/eureka}

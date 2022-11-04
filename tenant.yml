@@ -41,6 +41,7 @@ shop:
       end_session_uri: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/logout"
       jwks_uri: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/certs"
       check_session_iframe: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/login-status-iframe.html"
+      scopes: "email,profile,roles,web-origins"
       
   registry:
     url: ${EUREKA_URI:http://localhost:8083/eureka}

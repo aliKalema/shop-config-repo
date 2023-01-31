@@ -11,9 +11,9 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
 
-  shop:
-    iam:
-      url: ${iamBaseUrl:http://localhost:8080}
-    registry:
-      url: ${registryBaseUrl:http://localhost:8083}
-      hostname: ${registryHostname:localhost}
+shop:
+  iam:
+    url: ${iamBaseUrl:http://localhost:8080}
+  registry:
+    url: ${registryBaseUrl:http://localhost:8083}
+    hostname: ${registryHostname:localhost}

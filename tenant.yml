@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 0
 
 spring:
   application:
@@ -22,26 +22,13 @@ eureka:
     serviceUrl:
       defaultZone: ${shop.registry.url}
 
-keycloak:
-  realm: master
-  resource: tenant-service
-  auth-server-url: ${shop.iam.url}
-  credentials:
-    secret: ixLpGjwRUgwIkvVTwXlwnfjWVx0EeubD
-
 shop:
   iam:
-    url: ${iamBaseUrl:http://localhost:8080}
-    template:
-      issuer: "${shop.iam.url}/auth/realms/%s"
-      authorization_url: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/auth"
-      token_uri: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/token"
-      introspection_uri: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/token/introspect"
-      userinfo_uri: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/userinfo"
-      end_session_uri: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/logout"
-      jwks_uri: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/certs"
-      check_session_iframe: "${shop.iam.url}/auth/realms/%s/protocol/openid-connect/login-status-iframe.html"
-      scopes: "email,profile,roles,web-origins"
+    url: ${iamBaseUrl:http://localhost:8081}
+    username: ${masterUsername:admin}
+    password: ${masterPassword:password}
+    clientId: ${keycloakClientId:tenant-service}
+    secret: ${keycloakClientSecret:ixLpGjwRUgwIkvVTwXlwnfjWVx0EeubD}
       
   registry:
     url: ${EUREKA_URI:http://localhost:8083/eureka}

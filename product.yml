@@ -1,29 +1,40 @@
 server:
   port: 0
-  servlet:
-    context-path: /shop
-  forward-headers-strategy: framework
 
 spring:
   application:
-    name: PRODUCT-SERVICE
+    name: product
   data:
     web:
       pageable:
         size-parameter: pageSize
         page-parameter: pageNumber
-        default-page-size: 10
-  rabbitmq:
-    addresses: ${RABBIT_MQ_HOST:localhost}
-    username: ${RABBIT_MQ_USERNAME:guest}
-    password: ${RABBIT_MQ_PASSWORD:guest}
-    port: ${RABBIT_MQ_PORT:5672}
-    virtualHost: ${RABBIT_MQ_VIRTUALHOST:prod}
+        default-page-size: 1
+   
+   datasource:
+    url: ${MYSQL_DB_URI:jdbc:mysql://127.0.0.1:3313?useSSL=false}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
-    open-in-view: false
+    properties:
+      hibernate:
+        multiTenancy: SCHEMA
+        tenant_identifier_resolver: co.ke.personal.student.config.datasource.TenantIdentifierResolver
+        multi_tenant_connection_provider: co.ke.personal.student.config.datasource.SchemaMultiTenantConnectionProvider
     database: MYSQL
+    hibernate:
+      ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
-    hibernate.ddl-auto: update
+
+  flyway:
+    url: ${hibernate.connection.url}
+    user: ${hibernate.connection.username}
+    password: ${hibernate.connection.password}
+    baselineOnMigrate: true
+    enabled: false
+ 
   batch:
     jdbc:
       initialize-schema: always
